@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:todo_list_provider/app/core/widget/todo_list_logo.dart';
 import 'package:todo_list_provider/app/modules/auth/login/login_controller.dart';
 
 class LoginPage extends StatelessWidget {
@@ -7,12 +8,29 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ChangeNotifierProvider<LoginController>;
+    Provider.of<LoginController>(context);
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Login Page'),
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          return SingleChildScrollView(
+            child: ConstrainedBox(
+              constraints: BoxConstraints(
+                  minHeight: constraints.maxHeight,
+                  minWidth: constraints.maxWidth),
+              child: const IntrinsicHeight(
+                  child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  SizedBox(
+                    height: 10,
+                  ),
+                  TodoListLogo(),
+                ],
+              )),
+            ),
+          );
+        },
       ),
-      body: Container(),
     );
   }
 }
